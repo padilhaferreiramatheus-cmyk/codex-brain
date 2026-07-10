@@ -1,7 +1,10 @@
 node_modules/
 dist/
+.codex/hooks.json
+.codex/hooks/
 .agent-brain/events/
 .agent-brain/reports/
+.agent-brain/sessions/
 .agent-brain/tmp/
 *.log
 .DS_Store

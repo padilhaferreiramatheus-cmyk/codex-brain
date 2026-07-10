@@ -1,0 +1,46 @@
+name: Feature request
+description: Suggest a capability that would make Codex Brain more useful.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user pain should this solve?
+      placeholder: I lose track of...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should Codex Brain do?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - CLI
+        - Hooks
+        - Reports
+        - Memory
+        - Security
+        - Documentation
+        - Other
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: Anything that must stay true?
+      value: |
+        - Keep it local-first.
+        - Do not send project data to external services by default.
+        - Do not require a database.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

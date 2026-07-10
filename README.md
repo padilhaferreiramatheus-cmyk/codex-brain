@@ -1,5 +1,9 @@
 # Codex Brain
 
+[![CI](https://github.com/padilhaferreiramatheus-cmyk/codex-brain/actions/workflows/ci.yml/badge.svg)](https://github.com/padilhaferreiramatheus-cmyk/codex-brain/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Node.js >=20](https://img.shields.io/badge/node-%3E%3D20-339933.svg)](package.json)
+
 The missing memory layer for Codex-powered development.
 
 Codex moves fast. Git shows what changed. Codex Brain helps you remember why it changed.
@@ -38,6 +42,12 @@ That gives solo builders, maintainers, and teams a lightweight audit trail witho
 Codex Brain is built for the moment when "I think the agent fixed it" is not good enough.
 
 ## Quick Start
+
+When published to npm:
+
+```bash
+npx codex-brain quickstart
+```
 
 During local development:
 
@@ -83,6 +93,16 @@ cd C:\Projetos\your-project
 ```
 
 Do not run `npm.cmd run quickstart` inside another project unless that project's own `package.json` defines that script.
+
+## See It In Action
+
+Start with the sanitized demo transcript:
+
+- [Demo session](examples/demo-session.md)
+- [Example report](examples/report.md)
+- [Example next prompt](examples/next-prompt.md)
+- [Example memory snapshot](examples/memory-snapshot.md)
+- [Launch checklist](docs/launch-checklist.md)
 
 ## Commands
 
@@ -271,6 +291,12 @@ npm.cmd -v
 If hooks do not run, open `/hooks` inside Codex and confirm that the local hook commands have been reviewed and trusted.
 
 If `status` shows `not-a-git-repo`, initialize Git in the project or run Codex Brain from inside an existing repository.
+
+## Contributing
+
+Contributions are welcome while the project stays focused: reliable CLI first, local-first by default, security before spectacle.
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
 ## License
 

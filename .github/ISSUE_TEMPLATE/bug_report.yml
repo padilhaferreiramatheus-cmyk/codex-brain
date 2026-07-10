@@ -1,0 +1,56 @@
+name: Bug report
+description: Report something that is broken, unsafe, confusing, or inconsistent.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping make Codex Brain more trustworthy. Please avoid pasting secrets or private session logs.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened?
+      placeholder: Codex Brain reported X, but Git showed Y.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Small commands or actions that reproduce the issue.
+      placeholder: |
+        1. Run `codex-brain quickstart`
+        2. Run `codex-brain daily`
+        3. Open the generated report
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: Windows 11, macOS, Ubuntu
+  - type: input
+    id: node
+    attributes:
+      label: Node version
+      placeholder: "22.x"
+  - type: textarea
+    id: context
+    attributes:
+      label: Extra context
+      description: Sanitized logs, report snippets, or screenshots.

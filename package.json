@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "Local-first technical memory and reporting CLI for OpenAI Codex sessions.",
   "type": "module",
+  "homepage": "https://github.com/padilhaferreiramatheus-cmyk/codex-brain#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/padilhaferreiramatheus-cmyk/codex-brain.git"
+  },
+  "bugs": {
+    "url": "https://github.com/padilhaferreiramatheus-cmyk/codex-brain/issues"
+  },
   "bin": {
     "codex-brain": "./dist/src/cli.js"
   },
@@ -10,7 +18,9 @@
     "dist",
     "src/templates",
     "README.md",
-    "docs"
+    "docs",
+    "examples",
+    "skills"
   ],
   "scripts": {
     "dev": "tsx src/cli.ts",
@@ -20,7 +30,8 @@
     "checkpoint": "tsx src/cli.ts checkpoint",
     "typecheck": "tsc --noEmit",
     "build": "tsc -p tsconfig.json",
-    "test": "node --import tsx --test test/*.test.ts"
+    "test": "node --import tsx --test test/*.test.ts",
+    "prepublishOnly": "npm run typecheck && npm run build && npm test"
   },
   "dependencies": {
     "commander": "^12.1.0",
@@ -36,9 +47,18 @@
   },
   "keywords": [
     "codex",
+    "openai-codex",
+    "ai-coding",
+    "agent-memory",
+    "developer-tools",
     "cli",
     "local-first",
-    "developer-tools"
+    "git",
+    "markdown",
+    "jsonl"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT"
 }
