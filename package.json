@@ -30,7 +30,7 @@
     "checkpoint": "tsx src/cli.ts checkpoint",
     "typecheck": "tsc --noEmit",
     "build": "tsc -p tsconfig.json",
-    "test": "node --import tsx --test test/*.test.ts",
+    "test": "node --import tsx --test test/conflict-detector.test.ts test/git.test.ts test/install-hooks.test.ts test/jsonl.test.ts test/progress-scorer.test.ts",
     "prepublishOnly": "npm run typecheck && npm run build && npm test"
   },
   "dependencies": {
