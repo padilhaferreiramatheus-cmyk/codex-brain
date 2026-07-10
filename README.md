@@ -1,24 +1,45 @@
 # Codex Brain
 
-Git mostra o que mudou. Codex Brain mostra por que mudou.
+The missing memory layer for Codex-powered development.
 
-Codex Brain e uma CLI local-first para acompanhar sessoes de desenvolvimento com OpenAI Codex. Ela registra eventos, prompts, uso de ferramentas, estado real do Git, memoria tecnica do projeto e relatorios Markdown de continuidade.
+Codex moves fast. Git shows what changed. Codex Brain helps you remember why it changed.
 
-Esta primeira versao e offline. Ela nao chama API externa, nao sobe servidor, nao cria dashboard e nao envia dados para nuvem.
+Codex Brain is a local-first CLI that captures Codex session context, prompts, tool usage, Git state, project memory, and continuity reports so you can return to a codebase without rebuilding the whole story from chat history.
 
-## Problema que resolve
+No cloud sync. No database. No dashboard. No telemetry. Just Markdown, JSONL, Git, and a workflow that keeps technical intent close to the repo.
 
-Codex ajuda a desenvolver, mas a intencao tecnica pode ficar perdida entre chat, arquivos alterados e memoria humana. O Codex Brain separa tres coisas:
+## Why It Exists
 
-- o que o usuario pediu;
-- o que o Codex disse que fez;
-- o que o Git mostra que mudou.
+AI coding sessions create a strange new gap:
 
-Essa separacao aparece na secao "Promessa vs realidade" dos relatorios.
+- the user asked for one thing;
+- the agent said it did another thing;
+- the repository contains the only truth that actually matters.
 
-## Instalacao local
+Codex Brain turns that gap into a readable report. Every session can produce a "promise vs reality" summary that compares:
 
-Durante desenvolvimento:
+- what the user asked for;
+- what Codex reported back;
+- what Git says really changed.
+
+That gives solo builders, maintainers, and teams a lightweight audit trail without sending project context to a service.
+
+## What You Get
+
+- Local technical memory in `.agent-brain/memory/`
+- Raw hook events stored as JSONL
+- Daily reports written as Markdown
+- Next-prompt files for clean session handoffs
+- Git status and diff summaries in every report
+- Conflict hints against project memory
+- Secret masking and payload truncation in hooks
+- A `/next-prompt` skill for continuing from the latest generated prompt
+
+Codex Brain is built for the moment when "I think the agent fixed it" is not good enough.
+
+## Quick Start
+
+During local development:
 
 ```bash
 npm install
@@ -27,21 +48,43 @@ npm run quickstart
 npm run smoke
 ```
 
-Depois de publicado ou linkado como pacote:
+After installing or linking the package:
 
 ```bash
 codex-brain quickstart
 codex-brain selftest
 ```
 
-Se voce esta no Windows PowerShell e `npm` reclamar de execution policy, use `npm.cmd`:
+On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm`:
 
 ```powershell
 npm.cmd run quickstart
 npm.cmd run smoke
 ```
 
-## Comandos
+## The Daily Flow
+
+1. Enter the root of your project.
+2. Run `codex-brain quickstart`.
+3. Review and trust the generated hooks from inside Codex with `/hooks`.
+4. Work normally with Codex.
+5. Run `codex-brain checkpoint` when you want a named point in the work.
+6. Run `codex-brain daily` at the end of a session.
+7. Continue later with the generated `next-prompt` file or the `/next-prompt` skill.
+
+If you are using this checkout directly from another project:
+
+```powershell
+cd C:\Projetos\your-project
+& "C:\Projetos\CODEX BRAIN\codex-brain.cmd" quickstart
+& "C:\Projetos\CODEX BRAIN\codex-brain.cmd" selftest
+& "C:\Projetos\CODEX BRAIN\codex-brain.cmd" daily
+& "C:\Projetos\CODEX BRAIN\codex-brain.cmd" checkpoint --label fechamento
+```
+
+Do not run `npm.cmd run quickstart` inside another project unless that project's own `package.json` defines that script.
+
+## Commands
 
 ```bash
 codex-brain quickstart
@@ -61,18 +104,7 @@ codex-brain hooks-help
 codex-brain conflict-check "refazer tudo do zero sem teste"
 ```
 
-## Fluxo de uso
-
-1. Entre na raiz do projeto.
-2. Rode `codex-brain quickstart`.
-3. Rode `codex-brain selftest` para ver o ciclo funcionando.
-4. Abra o Codex e revise os hooks com `/hooks` dentro da interface do Codex.
-5. Trabalhe normalmente.
-6. Rode `codex-brain checkpoint` quando quiser marcar um ponto do trabalho.
-7. Use `codex-brain checkpoint --label fechamento` no fim da sessao.
-8. Use o arquivo `next-prompt` quando quiser continuar depois.
-
-Durante desenvolvimento deste proprio repo, coloque `npm.cmd run dev --` antes do comando:
+For development inside this repository:
 
 ```powershell
 npm.cmd run dev -- quickstart
@@ -82,22 +114,29 @@ npm.cmd run dev -- daily
 npm.cmd run dev -- checkpoint --label meio-dia
 ```
 
-Se voce quer usar esta copia local do Codex Brain em outro projeto antes de publicar/linkar o pacote, chame o launcher pelo caminho completo:
+## Reports
 
-```powershell
-cd C:\Projetos\espcons
-& "C:\Projetos\CODEX BRAIN\codex-brain.cmd" quickstart
-& "C:\Projetos\CODEX BRAIN\codex-brain.cmd" selftest
-& "C:\Projetos\CODEX BRAIN\codex-brain.cmd" timeline
-& "C:\Projetos\CODEX BRAIN\codex-brain.cmd" daily
-& "C:\Projetos\CODEX BRAIN\codex-brain.cmd" checkpoint --label fechamento
-```
+A report can include:
 
-Nao use `npm.cmd run quickstart` dentro de outro projeto, porque esse comando procura um script chamado `quickstart` no `package.json` daquele projeto.
+- project name, branch, commit, and date;
+- detected session objective;
+- prompts captured during the day;
+- final Codex responses;
+- tools and commands used;
+- files changed according to Git;
+- `git status`;
+- `git diff --stat`;
+- promise vs reality;
+- possible conflicts;
+- risks;
+- progress score;
+- next best prompt.
 
-## Hooks do Codex
+Reports are generated into `.agent-brain/reports/`, which is treated as local runtime output. Keep the reports when you need them; do not publish them by default.
 
-`install-hooks` cria:
+## Hooks
+
+`codex-brain install-hooks` creates project-local Codex hooks:
 
 ```text
 .codex/
@@ -111,24 +150,20 @@ Nao use `npm.cmd run quickstart` dentro de outro projeto, porque esse comando pr
     codex-brain-stop.js
 ```
 
-Os hooks:
+The hooks:
 
-- leem JSON do stdin;
-- gravam eventos em `.agent-brain/events/raw/*.jsonl`;
-- mascaram padroes simples de segredo;
-- truncam payloads grandes;
-- registram erros em `.agent-brain/events/raw/hook-errors.jsonl`;
-- sempre saem com exit code `0`;
-- nao escrevem em stdout;
-- nao enviam dados para fora.
+- read JSON from stdin;
+- write events to `.agent-brain/events/raw/*.jsonl`;
+- mask common secret patterns;
+- truncate large payloads;
+- log hook errors locally;
+- always exit with code `0`;
+- do not write to stdout;
+- do not send data outside your machine.
 
-Importante: hooks locais do Codex precisam ser revisados e confiados pelo usuario. Use `/hooks` no Codex para inspecionar o que sera executado.
+`/hooks` is a Codex interface command, not a PowerShell command. Use it inside Codex to inspect and trust local hooks.
 
-`/hooks` nao e comando do PowerShell. Se voce digitar `/hooks` no terminal, o Windows vai dizer que nao reconhece o comando. Isso e esperado. Abra o Codex e digite `/hooks` na interface do Codex.
-
-Se o Codex interpretar `/hooks` como uma tarefa para apagar `.codex/hooks/`, pare a execucao. Esses arquivos sao intencionais. O objetivo de `/hooks` e abrir o fluxo de revisao/confianca dos hooks, nao limpar o repo.
-
-## Estrutura local
+## Local Storage
 
 ```text
 .agent-brain/
@@ -147,27 +182,20 @@ Se o Codex interpretar `/hooks` como uma tarefa para apagar `.codex/hooks/`, par
     CONFLICTS.md
 ```
 
-## Exemplo de report
+Git remains the source of truth for what changed. Codex Brain adds the context around those changes.
 
-Um report diario inclui:
+## Privacy And Security
 
-- projeto, data, branch e commit;
-- objetivo principal detectado;
-- prompts enviados;
-- respostas finais;
-- ferramentas usadas;
-- arquivos alterados;
-- `git status`;
-- `git diff --stat`;
-- promessa vs realidade;
-- conflitos;
-- riscos;
-- pontuacao de progresso;
-- proximo melhor prompt.
+Codex Brain is intentionally boring about data.
 
-## Seguranca
+- No external server
+- No cloud database
+- No telemetry
+- No API calls for report generation
+- No credential collection
+- No dangerous Codex modes by default
 
-O Codex Brain nao deve coletar segredos. A primeira versao mascara padroes simples:
+The first version masks common patterns such as:
 
 - `OPENAI_API_KEY`
 - `sk-`
@@ -178,33 +206,72 @@ O Codex Brain nao deve coletar segredos. A primeira versao mascara padroes simpl
 - `token=`
 - `api_key=`
 
-Nao use `--dangerously-bypass-approvals-and-sandbox`, `--dangerously-bypass-hook-trust`, `danger-full-access` ou `yolo` por padrao.
+Avoid using `--dangerously-bypass-approvals-and-sandbox`, `--dangerously-bypass-hook-trust`, `danger-full-access`, or `yolo` as default workflows.
 
-## Limitacoes da versao inicial
+## Who It Is For
 
-- Analise de conflitos e heuristica.
-- Relatorios nao usam IA externa.
-- Eventos normalizados ainda sao reservados para evolucao futura.
-- `hooks.json` usa caminhos absolutos; se mover o projeto, rode `codex-brain install-hooks` novamente.
-- Em repos grandes, diff completo nao e salvo por padrao.
+Codex Brain is useful when you:
+
+- work with Codex across long sessions;
+- come back to a repo days later and need the real thread;
+- want local AI-work audit trails without SaaS;
+- need reports that compare intention against Git;
+- maintain multiple projects and want lightweight continuity;
+- want better handoffs between humans and coding agents.
+
+## What It Is Not Yet
+
+Codex Brain is early.
+
+- It is not a dashboard.
+- It is not a SaaS product.
+- It is not a replacement for Git.
+- It is not a multi-agent platform.
+- It does not use an external AI service to write reports.
+
+Those are deliberate constraints. The first job is to make the local CLI trustworthy.
 
 ## Roadmap
 
-1. CLI local funcional.
-2. Hooks Codex estaveis.
-3. Relatorios melhores.
-4. Integracao opcional com Graphify.
-5. Extensao VS Code, se realmente valer.
-6. SaaS, apenas se virar produto.
+1. Reliable local CLI
+2. Stable Codex hooks
+3. Better promise-vs-reality reports
+4. Optional Graphify integration
+5. VS Code extension, if the CLI proves the workflow
+6. SaaS only if it becomes a real product without compromising local-first
+
+## Development
+
+```bash
+npm run typecheck
+npm run build
+npm test
+```
+
+Manual checks:
+
+```bash
+npm run quickstart
+npm run smoke
+npm run dev -- doctor
+npm run dev -- status
+npm run dev -- timeline
+npm run dev -- report
+npm run dev -- next
+```
 
 ## Troubleshooting
 
-Se `npm -v` falhar no PowerShell por execution policy, use:
+If PowerShell blocks `npm`, use:
 
 ```bash
 npm.cmd -v
 ```
 
-Se os hooks nao rodarem, abra `/hooks` no Codex e confirme se eles foram revisados/confiados.
+If hooks do not run, open `/hooks` inside Codex and confirm that the local hook commands have been reviewed and trusted.
 
-Se `status` mostrar `not-a-git-repo`, inicialize Git no projeto ou rode a CLI dentro de um repo existente.
+If `status` shows `not-a-git-repo`, initialize Git in the project or run Codex Brain from inside an existing repository.
+
+## License
+
+MIT
