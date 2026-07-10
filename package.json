@@ -1,0 +1,44 @@
+{
+  "name": "codex-brain",
+  "version": "0.1.0",
+  "description": "Local-first technical memory and reporting CLI for OpenAI Codex sessions.",
+  "type": "module",
+  "bin": {
+    "codex-brain": "./dist/src/cli.js"
+  },
+  "files": [
+    "dist",
+    "src/templates",
+    "README.md",
+    "docs"
+  ],
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "quickstart": "tsx src/cli.ts quickstart",
+    "smoke": "tsx src/cli.ts selftest",
+    "daily": "tsx src/cli.ts daily",
+    "checkpoint": "tsx src/cli.ts checkpoint",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.json",
+    "test": "node --import tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "codex",
+    "cli",
+    "local-first",
+    "developer-tools"
+  ],
+  "license": "MIT"
+}

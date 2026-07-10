@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.agent-brain/events/
+.agent-brain/reports/
+.agent-brain/tmp/
+*.log
+.DS_Store
+Thumbs.db

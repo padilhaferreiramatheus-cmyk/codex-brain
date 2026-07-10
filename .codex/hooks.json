@@ -1,0 +1,58 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Projetos\\CODEX BRAIN\\.codex\\hooks\\codex-brain-session-start.js\"",
+            "commandWindows": "node \"C:\\Projetos\\CODEX BRAIN\\.codex\\hooks\\codex-brain-session-start.js\"",
+            "timeout": 30,
+            "statusMessage": "Codex Brain: registrando inicio de sessao"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Projetos\\CODEX BRAIN\\.codex\\hooks\\codex-brain-user-prompt-submit.js\"",
+            "commandWindows": "node \"C:\\Projetos\\CODEX BRAIN\\.codex\\hooks\\codex-brain-user-prompt-submit.js\"",
+            "timeout": 30,
+            "statusMessage": "Codex Brain: registrando prompt"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Projetos\\CODEX BRAIN\\.codex\\hooks\\codex-brain-post-tool-use.js\"",
+            "commandWindows": "node \"C:\\Projetos\\CODEX BRAIN\\.codex\\hooks\\codex-brain-post-tool-use.js\"",
+            "timeout": 30,
+            "statusMessage": "Codex Brain: registrando ferramenta"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:\\Projetos\\CODEX BRAIN\\.codex\\hooks\\codex-brain-stop.js\"",
+            "commandWindows": "node \"C:\\Projetos\\CODEX BRAIN\\.codex\\hooks\\codex-brain-stop.js\"",
+            "timeout": 30,
+            "statusMessage": "Codex Brain: registrando fechamento"
+          }
+        ]
+      }
+    ]
+  }
+}

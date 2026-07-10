@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Brain Daily"
+  short_description: "Run the Codex Brain daily workflow safely."
+  default_prompt: "Use Codex Brain to check status, generate a report, and prepare the next prompt."
