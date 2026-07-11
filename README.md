@@ -43,10 +43,17 @@ Codex Brain is built for the moment when "I think the agent fixed it" is not goo
 
 ## Quick Start
 
-When published to npm:
+From npm:
 
 ```bash
 npx codex-brain quickstart
+```
+
+Or install it globally:
+
+```bash
+npm install -g codex-brain
+codex-brain quickstart
 ```
 
 During local development:
