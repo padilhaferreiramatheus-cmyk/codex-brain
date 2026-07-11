@@ -4,7 +4,7 @@
 [![Licença: MIT](https://img.shields.io/badge/Licenca-MIT-yellow.svg)](LICENSE)
 [![Node.js >=20](https://img.shields.io/badge/node-%3E%3D20-339933.svg)](package.json)
 
-Leia em inglês: [README.md](README.md)
+Idiomas: [English](README.en.md) | Português (Brasil)
 
 A camada de memória que faltava para desenvolvimento com Codex.
 
