@@ -12,10 +12,10 @@
     "url": "https://github.com/padilhaferreiramatheus-cmyk/codex-brain/issues"
   },
   "bin": {
-    "codex-brain": "./dist/src/cli.js"
+    "codex-brain": "dist/src/cli.js"
   },
   "files": [
-    "dist",
+    "dist/src",
     "src/templates",
     "README.md",
     "docs",

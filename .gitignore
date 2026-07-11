@@ -1,5 +1,6 @@
 node_modules/
 dist/
+.npm-cache/
 .codex/hooks.json
 .codex/hooks/
 .agent-brain/events/
