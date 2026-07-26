@@ -1,0 +1,70 @@
+schema_version: 1
+last_reviewed: '2026-07-26'
+
+workspace:
+  default_parent: 'C:\Projetos'
+  global_brain_path: 'C:\Projetos\CODEX BRAIN'
+  folder_rule: 'Projects stay as siblings of CODEX BRAIN. Do not nest full projects inside this repository.'
+
+projects:
+  - id: codex-brain
+    name: 'Codex Brain'
+    path: 'C:\Projetos\CODEX BRAIN'
+    path_status: exists
+    role: 'global-brain'
+    privacy: private-context
+    summary_file: 'registry/projects/codex-brain.md'
+
+  - id: obraflow
+    name: 'ObraFlow'
+    path: 'C:\Projetos\ObraFlow'
+    path_status: exists
+    role: 'product'
+    privacy: unknown
+    summary_file: 'registry/projects/obraflow.md'
+
+  - id: espcons
+    name: 'ESPCONS'
+    path: 'C:\Projetos\espcons'
+    path_status: exists
+    role: 'operations-and-systems'
+    privacy: unknown
+    summary_file: 'registry/projects/espcons.md'
+
+  - id: vlog-my-job
+    name: 'Vlog My Job'
+    path: 'C:\Projetos\Vlog My Job'
+    path_status: not_found_under_c_projetos_on_2026-07-26
+    role: 'audience-and-content'
+    privacy: unknown
+    summary_file: 'registry/projects/vlog-my-job.md'
+
+  - id: espaco-da-construcao
+    name: 'Espaço da Construção'
+    path: 'C:\Projetos\Espaço da Construção'
+    path_status: not_found_under_c_projetos_on_2026-07-26
+    role: 'real-world-construction-context'
+    privacy: unknown
+    summary_file: 'registry/projects/espaco-da-construcao.md'
+
+  - id: pessoal
+    name: 'Pessoal'
+    path: 'C:\Projetos\Pessoal'
+    path_status: not_found_under_c_projetos_on_2026-07-26
+    role: 'personal-context'
+    privacy: sensitive
+    summary_file: 'registry/projects/pessoal.md'
+
+discovered_local_folders_not_yet_registered:
+  - 'C:\Projetos\3D VISULIZER'
+  - 'C:\Projetos\Aula de Github'
+  - 'C:\Projetos\Calculador de Impostos'
+  - 'C:\Projetos\DIFY'
+  - 'C:\Projetos\espcons-chatbot-ai'
+  - 'C:\Projetos\Marketing Brain'
+  - 'C:\Projetos\MARKITDOWN'
+  - 'C:\Projetos\MARKITDOWN-pipeline-webscraper'
+  - 'C:\Projetos\MAXUN'
+  - 'C:\Projetos\Ressonancia Harmonica'
+  - 'C:\Projetos\SUCURIA PROVIDER'
+  - 'C:\Projetos\Video Downloader helper'

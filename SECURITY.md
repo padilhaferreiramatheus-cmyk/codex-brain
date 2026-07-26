@@ -1,38 +1,39 @@
-# Security Policy
+# Segurança E Privacidade
 
-Codex Brain runs inside developer workflows and touches session context, prompts, Git metadata, and local project memory. Security and privacy issues matter.
+Codex Brain pode conter caminhos locais, relações estratégicas e resumos de
+projetos privados.
 
-## Supported Versions
+## Regra Principal
 
-Codex Brain is currently in public preview. Security fixes target the latest version on `main` until formal releases begin.
+Não publique este repositório sem revisar o conteúdo.
 
-## Reporting A Vulnerability
+## Nunca Versionar
 
-Please do not paste secrets, private session logs, or full proprietary reports into public issues.
+- tokens;
+- senhas;
+- chaves de API;
+- arquivos `.env`;
+- dados de clientes;
+- contratos privados;
+- documentos pessoais;
+- conteúdo bruto de operações internas.
 
-If GitHub private vulnerability reporting is available for this repository, use it. Otherwise, open a minimal public issue that describes the affected area without exposing private data.
+## Preferir
 
-Useful details include:
+- resumos curtos;
+- caminhos locais;
+- links para a fonte real;
+- nível de privacidade explícito;
+- notas sanitizadas.
 
-- affected command or hook;
-- operating system;
-- Node version;
-- sanitized reproduction steps;
-- whether secrets, prompts, or file paths could be exposed.
+## Antes De Push Público
 
-## Security Goals
+Verifique:
 
-- Keep the default workflow local-first.
-- Avoid collecting credentials or tokens.
-- Mask common secret patterns.
-- Truncate large hook payloads.
-- Make generated hook behavior inspectable.
-- Avoid dangerous Codex modes by default.
+- `registry/projects.yml`;
+- `registry/projects/`;
+- `graph/relations.yml`;
+- `docs/`;
+- arquivos em `local/`, `private/` ou `secrets/`.
 
-## Non-Goals For The First Version
-
-- No hosted service.
-- No external database.
-- No cloud sync.
-- No telemetry.
-- No remote AI processing for reports.
+Essas últimas pastas devem permanecer fora do Git.

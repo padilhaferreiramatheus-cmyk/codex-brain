@@ -1,7 +1,0 @@
-{
-  "version": 1,
-  "maxFieldLength": 12000,
-  "maxEventBytes": 200000,
-  "saveFullDiff": false,
-  "maskSecrets": true
-}

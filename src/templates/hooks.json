@@ -1,8 +1,0 @@
-{
-  "hooks": {
-    "SessionStart": [],
-    "UserPromptSubmit": [],
-    "PostToolUse": [],
-    "Stop": []
-  }
-}

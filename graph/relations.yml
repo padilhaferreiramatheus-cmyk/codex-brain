@@ -1,0 +1,63 @@
+schema_version: 1
+last_reviewed: '2026-07-26'
+
+relations:
+  - from: codex-brain
+    to: obraflow
+    type: organizes
+    confidence: confirmed_by_user_direction
+    note: 'Global brain points to ObraFlow instead of containing it.'
+
+  - from: codex-brain
+    to: espcons
+    type: organizes
+    confidence: confirmed_by_user_direction
+    note: 'Global brain points to ESPCONS instead of containing it.'
+
+  - from: codex-brain
+    to: vlog-my-job
+    type: organizes
+    confidence: confirmed_by_user_direction
+    note: 'Global brain should know Vlog My Job and its role.'
+
+  - from: codex-brain
+    to: espaco-da-construcao
+    type: organizes
+    confidence: confirmed_by_user_direction
+    note: 'Global brain should know this project and its role.'
+
+  - from: codex-brain
+    to: pessoal
+    type: organizes
+    confidence: confirmed_by_user_direction
+    note: 'Personal context is sensitive and should remain summarized.'
+
+  - from: vlog-my-job
+    to: obraflow
+    type: audience_for
+    confidence: user_hypothesis
+    note: 'Vlog My Job can generate audience that may validate or buy ObraFlow.'
+
+  - from: espaco-da-construcao
+    to: obraflow
+    type: source_of_real_world_problems
+    confidence: user_hypothesis
+    note: 'Construction experience can reveal product opportunities.'
+
+  - from: espcons
+    to: obraflow
+    type: source_of_operational_patterns
+    confidence: user_hypothesis
+    note: 'Internal systems and processes can become product knowledge.'
+
+  - from: espaco-da-construcao
+    to: vlog-my-job
+    type: source_of_content_cases
+    confidence: user_hypothesis
+    note: 'Real cases can become public content only when sanitized.'
+
+  - from: espcons
+    to: vlog-my-job
+    type: source_of_sanitized_content
+    confidence: user_hypothesis
+    note: 'Operational stories may become content without exposing sensitive data.'
